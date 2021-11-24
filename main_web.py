@@ -1,9 +1,9 @@
 from flask import Flask, request
-from config import TOKEN
 import telebot
 import os
 
 app = Flask(__name__)
+TOKEN = os.environ.get('TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
 with open('courses.txt') as file:
@@ -95,7 +95,7 @@ def get_message():
 @app.route('/')
 def main():
     bot.remove_webhook()
-    bot.set_webhook(url='https://bot-26-05-2021.herokuapp.com/' + TOKEN)
+    bot.set_webhook(url='https://prog-kyiv-november-bot.herokuapp.com/' + TOKEN)
     return "Python Telegram Bot", 200
 
 
